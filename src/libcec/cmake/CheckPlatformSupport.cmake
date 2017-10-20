@@ -102,12 +102,12 @@ else()
   endif()
 
   # raspberry pi
-  find_library(RPI_BCM_HOST bcm_host "${RPI_LIB_DIR}")
+  find_library(RPI_BCM_HOST NAMES bcm_host PATHS "${RPI_LIB_DIR}")
   check_library_exists(bcm_host bcm_host_init "${RPI_LIB_DIR}" HAVE_RPI_LIB)
   if (HAVE_RPI_LIB)
     SET(HAVE_RPI_API ON CACHE BOOL "raspberry pi supported" FORCE)
-    find_library(RPI_VCOS vcos "${RPI_LIB_DIR}")
-    find_library(RPI_VCHIQ_ARM vchiq_arm "${RPI_LIB_DIR}")
+    find_library(RPI_VCOS NAMES vcos PATHS "${RPI_LIB_DIR}")
+    find_library(RPI_VCHIQ_ARM NAMES vchiq_arm PATHS "${RPI_LIB_DIR}")
     include_directories(${RPI_INCLUDE_DIR} ${RPI_INCLUDE_DIR}/interface/vcos/pthreads ${RPI_INCLUDE_DIR}/interface/vmcs_host/linux)
 
     set(LIB_INFO "${LIB_INFO}, RPi")
